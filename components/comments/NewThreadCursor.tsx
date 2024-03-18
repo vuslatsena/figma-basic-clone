@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import * as Portal from "@radix-ui/react-portal";
 
 const DEFAULT_CURSOR_POSITION = -10000;
-
-// display a custom cursor when placing a new thread
 const NewThreadCursor = ({ display }: { display: boolean }) => {
   const [coords, setCoords] = useState({
     x: DEFAULT_CURSOR_POSITION,
@@ -18,15 +16,7 @@ const NewThreadCursor = ({ display }: { display: boolean }) => {
       const canvas = document.getElementById("canvas");
 
       if (canvas) {
-        /**
-         * getBoundingClientRect returns the size of an element and its position relative to the viewport
-         *
-         * getBoundingClientRect: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
-         */
         const canvasRect = canvas.getBoundingClientRect();
-
-        // check if the mouse is outside the canvas
-        // if so, hide the custom comment cursor
         if (
           e.clientX < canvasRect.left ||
           e.clientX > canvasRect.right ||

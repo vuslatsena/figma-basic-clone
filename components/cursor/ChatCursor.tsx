@@ -2,7 +2,7 @@ import { CursorChatProps, CursorMode } from "@/types/type";
 import CursorSVG from "@/public/assets/CursorSVG";
 
 /**
- * 
+ * ChatCursor component
  * @returns ChatCursor
  */
 

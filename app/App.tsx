@@ -24,13 +24,6 @@ import { defaultNavElement } from "@/constants";
 import { ActiveElement, Attributes } from "@/types/type";
 
 const Home = () => {
-  /**
-   * useUndo and useRedo are hooks provided by Liveblocks that allow you to
-   * undo and redo mutations.
-   *
-   * useUndo: https://liveblocks.io/docs/api-reference/liveblocks-react#useUndo
-   * useRedo: https://liveblocks.io/docs/api-reference/liveblocks-react#useRedo
-   */
   const undo = useUndo();
   const redo = useRedo();
   const canvasObjects = useStorage((root) => root.canvasObjects);
@@ -57,20 +50,6 @@ const Home = () => {
     fill: "#aabbcc",
     stroke: "#aabbcc",
   });
-
-  /**
-   * deleteShapeFromStorage is a mutation that deletes a shape from the
-   * key-value store of liveblocks.
-   * useMutation is a hook provided by Liveblocks that allows you to perform
-   * mutations on liveblocks data.
-   *
-   * useMutation: https://liveblocks.io/docs/api-reference/liveblocks-react#useMutation
-   * delete: https://liveblocks.io/docs/api-reference/liveblocks-client#LiveMap.delete
-   * get: https://liveblocks.io/docs/api-reference/liveblocks-client#LiveMap.get
-   *
-   * We're using this mutation to delete a shape from the key-value store when
-   * the user deletes a shape from the canvas.
-   */
   const deleteShapeFromStorage = useMutation(({ storage }, shapeId) => {
     const canvasObjects = storage.get("canvasObjects");
     canvasObjects.delete(shapeId);
@@ -129,11 +108,6 @@ const Home = () => {
       case "image":
         // trigger the click event on the input element which opens the file dialog
         imageInputRef.current?.click();
-        /**
-         * set drawing mode to false
-         * If the user is drawing on the canvas, we want to stop the
-         * drawing mode when clicked on the image item from the dropdown.
-         */
         isDrawing.current = false;
 
         if (fabricRef.current) {
@@ -159,14 +133,6 @@ const Home = () => {
       canvasRef,
       fabricRef,
     });
-
-    /**
-     * listen to the mouse down event on the canvas which is fired when the
-     * user clicks on the canvas
-     *
-     * Event inspector: http://fabricjs.com/events
-     * Event list: http://fabricjs.com/docs/fabric.Canvas.html#fire
-     */
     canvas.on("mouse:down", (options) => {
       handleCanvasMouseDown({
         options,

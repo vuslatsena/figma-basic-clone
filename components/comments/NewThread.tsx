@@ -29,24 +29,10 @@ export const NewThread = ({ children }: Props) => {
   const [creatingCommentState, setCreatingCommentState] = useState<
     "placing" | "placed" | "complete"
   >("complete");
-
-  /**
-   * We're using the useCreateThread hook to create a new thread.
-   *
-   * useCreateThread: https://liveblocks.io/docs/api-reference/liveblocks-react#useCreateThread
-   */
   const createThread = useCreateThread();
-
-  // get the max z-index of a thread
   const maxZIndex = useMaxZIndex();
-
-  // set state to track the coordinates of the composer (liveblocks comment editor)
   const [composerCoords, setComposerCoords] = useState<ComposerCoords>(null);
-
-  // set state to track the last pointer event
   const lastPointerEvent = useRef<PointerEvent>();
-
-  // set state to track if user is allowed to use the composer
   const [allowUseComposer, setAllowUseComposer] = useState(false);
   const allowComposerRef = useRef(allowUseComposer);
   allowComposerRef.current = allowUseComposer;
@@ -81,7 +67,6 @@ export const NewThread = ({ children }: Props) => {
           return;
         }
       }
-
       // First click sets composer down
       setCreatingCommentState("placed");
       setComposerCoords({
@@ -195,15 +180,6 @@ export const NewThread = ({ children }: Props) => {
 
   return (
     <>
-      {/**
-       * Slot is used to wrap the children of the NewThread component
-       * to allow us to add a click event listener to the children
-       *
-       * Slot: https://www.radix-ui.com/primitives/docs/utilities/slot
-       *
-       * Disclaimer: We don't have to download this package specifically,
-       * it's already included when we install Shadcn
-       */}
       <Slot
         onClick={() =>
           setCreatingCommentState(
@@ -217,11 +193,6 @@ export const NewThread = ({ children }: Props) => {
 
       {/* if composer coords exist and we're placing a comment, render the composer */}
       {composerCoords && creatingCommentState === "placed" ? (
-        /**
-         * Portal.Root is used to render the composer outside of the NewThread component to avoid z-index issuess
-         *
-         * Portal.Root: https://www.radix-ui.com/primitives/docs/utilities/portal
-         */
         <Portal.Root
           className='absolute left-0 top-0'
           style={{
