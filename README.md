@@ -1,4 +1,11 @@
 
+## <a name="table"> Quick Look </a>
+
+
+https://github.com/vuslatsena/figma-basic-clone/assets/47564075/30182c6d-0df0-4d6d-9a96-da88abedf9ac
+
+
+
 ## <a name="table"> Summary </a>
 This project was developed using Fabric.js, Nextjs, TypeScript, Liveblocks and Shadcn to understand the working logic of figma.
 
